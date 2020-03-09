@@ -50,6 +50,22 @@ size in train dataset:
 <img src='readme_images/figure_1.png' width='600'>
 
 ## Solution details
+First problem we face with this dataset &mdash; most of the images are small,
+there are still large images that need to be fed to the neural network which
+can only take images of fixed size. During this project I tested two approaches
+to solve this problem:
+
+1. Resize all images to make them equal-sized. This is a classical approach.
+It also approach has proven to be the most precise in this competition.
+The most accurate prediction model is based on it. Here is example of image
+transformed this way:
+<img src='readme_images/figure_5.png' width='700'>
+
+2. Crop `NxN` random squares from an image. This approach seems to be better than previous
+one, but in practice it gives worse results. This might happen because cropped images
+are too small for neural network to capture all details significant for prediction.
+Here is example of image transformed this way:
+<img src='readme_images/figure_4.png' width='700'>
 
 ## How to run
 
