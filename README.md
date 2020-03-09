@@ -39,6 +39,15 @@ can classify images into 1000 categories.
 ```
 
 ## Data overview
+The dataset consists of 875 color images of crops. The images have different file format.
+The dataset is split into three not equal parts, each part identifies a class of crop.
+Here is the bar graph of class proportions:
+<img src='/readme_images/figure_3.png' width='600'>
+
+Our solution is based on a neural network for which the size of the image it works
+with is critical, so let's see disributions of image sizes. Here is distribution of image
+size in train dataset:
+<img src='readme_images/figure_1.png' width='600'>
 
 ## Solution details
 
