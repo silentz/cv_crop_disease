@@ -50,7 +50,7 @@ are not tested:
 
 - Python 3.7.6
 - Pytorch 1.4.0
-- Numpy
+- Numpy 1.18.1
 - Pandas 1.0.1
 - OpenCV 4.2.0.32
 - Albumentations 0.4.5
@@ -63,13 +63,32 @@ To install them you can use:
 pip install -r requirements.txt
 ```
 
-
 ### Dataset
+
+To run the project you also need to dowload dataset:
+
+1. Download train dataset using following link: [train.zip](https://api.zindi.africa/v1/competitions/iclr-workshop-challenge-1-cgiar-computer-vision-for-crop-disease/files/train.zip).
+2. Download test dataset using following link: [test.zip](https://api.zindi.africa/v1/competitions/iclr-workshop-challenge-1-cgiar-computer-vision-for-crop-disease/files/test.zip).
+3. Unpack `train.zip` into `input/train` directory.
+4. Unpack `test.zip` into `input/test` directory.
 
 ### Preprocessing
 
+
+
 ### Training
 
+To train a model you shuold use `catalyst-dl` utility (comes after installing catalyst):
+```
+catalyst-dl run --config=./config.yml --verbose
+```
+Then you can find trained model in `logdir/checkpoints/` directory.
+
 ### Evaluation
+
+To make predictions using trained model you use `src/inference.py` script:
+```
+python src/inference.py <path/to/trained/model> <path/to/test_clean> <output file name>
+```
 
 ## Download
