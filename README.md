@@ -45,6 +45,24 @@ can classify images into 1000 categories.
 ## How to run
 
 ### Requirements
+Here is list of requirements you need to run the project. Other versions
+are not tested:
+
+- Python 3.7.6
+- Pytorch 1.4.0
+- Numpy
+- Pandas 1.0.1
+- OpenCV 4.2.0.32
+- Albumentations 0.4.5
+- Catalyst 20.2.4
+- Cnn-finetune 0.6.0
+- Tqdm 4.43.0
+
+To install them you can use:
+```
+pip install -r requirements.txt
+```
+
 
 ### Dataset
 
