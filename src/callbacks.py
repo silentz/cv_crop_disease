@@ -13,7 +13,7 @@ class LogLoss(Callback):
     def on_batch_end(self, state):
         targets = state.input[self.targets].detach().cpu().numpy()
         logits = state.output[self.logits]
-        logits = F.softmax(logits, 1)
-        logits = logits.detach().cpu().numpy()
-        final_score = log_loss(targets, logits, labels=[0, 1, 2])
+        probabilities = F.softmax(logits, 1)
+        probabilities = probabilities.detach().cpu().numpy()
+        final_score = log_loss(targets, probabilities, labels=[0, 1, 2])
         state.metric_manager.add_batch_value(name=self.prefix, value=final_score)

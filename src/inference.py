@@ -70,7 +70,8 @@ for step, batch in tqdm(enumerate(data_loader)):
     inputs = batch["image"]
     image_ids = batch["image_id"]
     out_logits = logits[step] / test_count
-    out_logits = F.softmax(out_logits, dim=1).numpy()
+    # out_logits = F.softmax(out_logits, dim=1).numpy()
+    out_logits = F.sigmoid(out_logits).numpy()
 
     for index, image_id in enumerate(image_ids):
         result.append([image_id] + list(out_logits[index]))

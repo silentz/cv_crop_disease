@@ -10,14 +10,6 @@ class ZindiModel(nn.Module):
         in_features = self.model._classifier.in_features
         self.head = nn.Linear(in_features, num_classes)
 
-    def freeze(self):
-        for param in self.model._features.parameters():
-            param.requires_grad = False
-
-    def unfreeze(self):
-        for param in self.model._features.parameters():
-            param.requires_grad = True
-
     def forward(self, x):
         features = self.model._features(x)
         features = F.adaptive_avg_pool2d(features, 1)
