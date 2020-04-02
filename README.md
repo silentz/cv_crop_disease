@@ -73,7 +73,7 @@ Here is example of image transformed this way:
 #### Optimizer
 
 In this project AdamW optimizer is used instead of Adam to train the neural network.
-The optimiser shows experimentally better model generalization results because
+The optimiser shows better empirically model generalization results because
 it performs weight decay to reduce overfitting effect.
 
 #### Scheduler
