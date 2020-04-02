@@ -2,8 +2,8 @@
 
 This is the project for [CGIAR Computer Vision for Crop Disease](https://zindi.africa/competitions/iclr-workshop-challenge-1-cgiar-computer-vision-for-crop-disease/)
 &mdash; computer vision competition for identification wheat rust in images from Ethiopia and Tanzania.
-It addresses problem of multiclass classification, where every image of crop is labeled as healthy or having one
-of two deseases. My approach is originally based on resnet18 &mdash; pretrained convolutional neural network that
+It relates to the problem of multiclass classification, where every image of crop is labeled as healthy or having one
+of two diseases. My approach is based on resnet18 &mdash; a pretrained convolutional neural network that
 can classify images into 1000 categories. This solution ended up at 155th place in the competition.
 
 ## Table of contents
@@ -19,7 +19,6 @@ can classify images into 1000 categories. This solution ended up at 155th place 
   * [Evaluation](#evaluation)
 * [Download](#download)
 
-[//]: <> (Problem overview)
 
 ## Project layout
 
@@ -30,21 +29,21 @@ can classify images into 1000 categories. This solution ended up at 155th place 
 │   ├── test          # Test images.
 │   ├── train_clean   # Preprocessed train images split into categories.
 │   └── test_clean    # Preprocessed test images.
-├── logdir            # Where trained model outputs are saved.
-├── models            # Pth files of trained models
-├── src               # Soltion source code.
+├── logdir            # Trained models output path.
+├── models            # Pth files of trained models used in inference.
+├── src               # Solution source code.
 ├── config.yml        # Catalyst configuration.
 └── folds.csv         # Images split into folds.
 ```
 
 ## Data overview
-The dataset consists of 875 color images of crops. The images have different file format.
-The dataset is split into three not equal parts, each part identifies a class of crop.
+The dataset consists of 875 colored images of crops. The images have different file format.
+The dataset is split into three non equal parts, each part identifies a class of crop.
 Here is the bar graph of class proportions:
 <img src='/readme_images/figure_3.png' width='600'>
 
-Our solution is based on a neural network for which the size of the image it works
-with is critical, so let's see disributions of image sizes. Here is distribution of image
+My solution is based on a neural network for which the size of the image
+is critical, so let's see the disribution of image sizes. Here is the distribution of image
 size in train dataset:
 <img src='readme_images/figure_1.png' width='600'>
 
@@ -52,20 +51,20 @@ size in train dataset:
 
 ### Images
 
-First problem we face with this dataset &mdash; most of the images are small,
-there are still large images that need to be fed to the neural network which
-can only take images of fixed size. During this project I tested two approaches
+First problem we face with this dataset &mdash; while most of the images are small,
+there are still large ones that need to be fed to the neural network which
+can only take images of fixed size. In this project I tested two approaches
 to solve this problem:
 
 1. Resize all images to make them equal-sized. This is a classical approach.
-It also approach has proven to be the most precise in this competition.
-The most accurate prediction model is based on it. Here is example of image
+It also has proven to be the most precise in this competition.
+My most accurate prediction model is based on it. Here is example of image
 transformed this way:
 <img src='readme_images/figure_5.png' width='700'>
 
 2. Crop `NxN` random squares from an image. This approach seems to be better than previous
 one, but in practice it gives worse results. This might happen because cropped images
-are too small for neural network to capture all details significant for prediction.
+are too small for the neural network to capture all details significant for prediction.
 Here is example of image transformed this way:
 <img src='readme_images/figure_4.png' width='700'>
 
@@ -74,15 +73,15 @@ Here is example of image transformed this way:
 #### Optimizer
 
 In this project AdamW optimizer is used instead of Adam to train the neural network.
-It shows experimentally better model generalization results because
-optimiser performs weight decay to reduce overfitting effect.
+The optimiser shows experimentally better model generalization results because
+it performs weight decay to reduce overfitting effect.
 
 #### Scheduler
 
 This solution uses OneCycleLRWithWarmup scheduler. On warmup steps, it increases learning rate
 to its maximum and decreases momentum to its minimum. On annealing stage it decreases
-learning rate and increases momentum. In a nutshell we choose direction during warmup stage and
-then only make small corrections during annealing stage.
+learning rate and increases momentum.
+<img src='readme_images/figure_6.png' width='600'>
 
 ## How to run
 
