@@ -50,6 +50,9 @@ size in train dataset:
 <img src='readme_images/figure_1.png' width='600'>
 
 ## Solution details
+
+### Images
+
 First problem we face with this dataset &mdash; most of the images are small,
 there are still large images that need to be fed to the neural network which
 can only take images of fixed size. During this project I tested two approaches
@@ -66,6 +69,13 @@ one, but in practice it gives worse results. This might happen because cropped i
 are too small for neural network to capture all details significant for prediction.
 Here is example of image transformed this way:
 <img src='readme_images/figure_4.png' width='700'>
+
+### Neural network
+
+As it was mentioned, my project is based on resnet18. Here is architecture of this neural network:
+<p align='center'>
+  <img src='readme_images/resnet18.png' height='700'>
+</p>
 
 ## How to run
 
@@ -99,7 +109,25 @@ To run the project you also need to dowload dataset:
 
 ### Preprocessing
 
+As it was mentioned in 'Data overview' section, images have different file formats.
+Therefore we convert them to the same format so that it is easier to process them.
 
+#### On MacOS
+```
+sips -s format png input/train/healthy_wheat/* --out input/train_clean/healthy_wheat
+sips -s format png input/train/leaf_rust/* --out input/train_clean/leaf_rust
+sips -s format png input/train/stem_rust/* --out input/train_clean/stem_rust
+sips -s format png input/test/* --out input/test_clean
+```
+
+#### On Linux
+You need to install `imagemagick` package, after you can run:
+```
+mogrify -path input/train_clean/healthy_wheat -format png input/train/healthy_wheat/* 
+mogrify -path input/train_clean/leaf_rust -format png input/train/leaf_rust/* 
+mogrify -path input/train_clean/stem_rust -format png input/train/stem_rust/* 
+mogrify -path input/test_clean -format png input/test/* 
+```
 
 ### Training
 
