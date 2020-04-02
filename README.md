@@ -4,9 +4,7 @@ This is the project for [CGIAR Computer Vision for Crop Disease](https://zindi.a
 &mdash; computer vision competition for identification wheat rust in images from Ethiopia and Tanzania.
 It addresses problem of multiclass classification, where every image of crop is labeled as healthy or having one
 of two deseases. My approach is originally based on resnet18 &mdash; pretrained convolutional neural network that
-can classify images into 1000 categories.
-
-[//]: <> (This solution ended up at -1th place in the competition.)
+can classify images into 1000 categories. This solution ended up at 155th place in the competition.
 
 ## Table of contents
 
@@ -33,6 +31,7 @@ can classify images into 1000 categories.
 │   ├── train_clean   # Preprocessed train images split into categories.
 │   └── test_clean    # Preprocessed test images.
 ├── logdir            # Where trained model outputs are saved.
+├── models            # Pth files of trained models
 ├── src               # Soltion source code.
 ├── config.yml        # Catalyst configuration.
 └── folds.csv         # Images split into folds.
@@ -72,10 +71,18 @@ Here is example of image transformed this way:
 
 ### Neural network
 
-As it was mentioned, my project is based on resnet18. Here is architecture of this neural network:
-<p align='center'>
-  <img src='readme_images/resnet18.png' height='700'>
-</p>
+#### Optimizer
+
+In this project AdamW optimizer is used instead of Adam to train the neural network.
+It shows experimentally better model generalization results because
+optimiser performs weight decay to reduce overfitting effect.
+
+#### Scheduler
+
+This solution uses OneCycleLRWithWarmup scheduler. On warmup steps, it increases learning rate
+to its maximum and decreases momentum to its minimum. On annealing stage it decreases
+learning rate and increases momentum. In a nutshell we choose direction during warmup stage and
+then only make small corrections during annealing stage.
 
 ## How to run
 
@@ -145,3 +152,9 @@ python src/inference.py <path/to/trained/model> <path/to/test_clean> <output fil
 ```
 
 ## Download
+
+These models were used to make predictions:
+
+* [resnet18_600ep.pth](https://github.com/silentz/cv_crop_disease/raw/master/models/resnet18_600ep_best.pth)
+* [resnet18_2000ep.pth](https://github.com/silentz/cv_crop_disease/raw/master/models/resnet18_2000ep_best.pth)
+* [resnet18_3000ep.pth](https://github.com/silentz/cv_crop_disease/raw/master/models/resnet18_3000ep_best.pth)
