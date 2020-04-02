@@ -155,6 +155,6 @@ python src/inference.py <path/to/trained/model> <path/to/test_clean> <output fil
 
 These models were used to make predictions:
 
-* [resnet18_600ep.pth](/raw/master/models/resnet18_600ep_best.pth)
-* [resnet18_2000ep.pth](/raw/master/models/resnet18_2000ep_best.pth)
-* [resnet18_3000ep.pth](/raw/master/models/resnet18_3000ep_best.pth)
+* [resnet18_600ep.pth](https://github.com/silentz/cv_crop_disease/raw/master/models/resnet18_600ep_best.pth)
+* [resnet18_2000ep.pth](https://github.com/silentz/cv_crop_disease/raw/master/models/resnet18_2000ep_best.pth)
+* [resnet18_3000ep.pth](https://github.com/silentz/cv_crop_disease/raw/master/models/resnet18_3000ep_best.pth)
