@@ -1,7 +1,7 @@
 albumentations==0.4.5
 catalyst==20.2.4
 cnn-finetune==0.6.0
-numpy==1.18.1
+numpy==1.22.0
 opencv-python==4.2.0.32
 pandas==1.0.1
 torch==1.4.0
